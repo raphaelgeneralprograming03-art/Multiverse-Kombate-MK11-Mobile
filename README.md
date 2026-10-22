@@ -472,7 +472,6 @@
 
         // MOTOR CANVAS DA ARENA DE COMBATE
         let p1X = 260, p2X = 700;
-        let particles = [];
 
         function triggerAttack() {
             p1X += 60;
