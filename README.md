@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiverse Kombat 11 Mobile - Módulo de Combate Visual</title>
+    <title>Multiverse Kombat 11 Mobile</title>
     <style>
         :root {
-            --gold: #d4af37;
-            --dark-bg: #070709;
-            --panel-bg: #121217;
-            --border-color: #2b2b36;
+            --mk-gold: #d4af37;
+            --mk-dark: #050508;
+            --panel-bg: #0f0f14;
+            --border-color: #272732;
             --red-glow: #ef4444;
             --blue-glow: #3b82f6;
             --purple-glow: #a855f7;
+            --green-glow: #00ff66;
         }
 
         * {
@@ -24,36 +25,36 @@
         }
 
         body {
-            background-color: var(--dark-bg);
+            background-color: var(--mk-dark);
             color: #f3f4f6;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
             min-height: 100vh;
             padding: 10px;
         }
 
+        /* HEADER & RECURSOS DO APLICATIVO */
         header {
             width: 100%;
-            max-width: 980px;
+            max-width: 1000px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: linear-gradient(90deg, #16161f, #09090d);
-            border: 2px solid var(--gold);
+            background: linear-gradient(90deg, #16161f, #07070a);
+            border: 2px solid var(--mk-gold);
             padding: 10px 20px;
             border-radius: 6px;
-            margin-bottom: 10px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            margin-bottom: 12px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.25);
         }
 
         h1 {
-            color: var(--gold);
+            color: var(--mk-gold);
             font-size: 1.3rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
         }
 
         .currencies {
@@ -64,49 +65,143 @@
         }
 
         .curr-item {
-            background: #1f1f28;
+            background: #1a1a24;
             padding: 5px 12px;
             border-radius: 4px;
-            border: 1px solid #383846;
+            border: 1px solid #383848;
         }
 
-        .game-wrapper {
+        /* BARRA DE MENU ESTILO MK11 MOBILE */
+        nav.menu-bar {
             width: 100%;
-            max-width: 980px;
+            max-width: 1000px;
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .nav-btn {
+            flex: 1;
+            background: #121218;
+            border: 1px solid #383848;
+            color: #a1a1aa;
+            padding: 12px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .nav-btn.active, .nav-btn:hover {
+            background: linear-gradient(135deg, var(--mk-gold), #997a15);
+            color: #000;
+            border-color: var(--mk-gold);
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5);
+        }
+
+        .app-container {
+            width: 100%;
+            max-width: 1000px;
             background: var(--panel-bg);
             border: 2px solid var(--border-color);
             border-radius: 8px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
+            padding: 15px;
+            min-height: 520px;
         }
 
-        /* HUD SUPERIOR MK11 MOBILE */
+        .tab-content {
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tab-content.active {
+            display: flex;
+        }
+
+        .section-title {
+            color: var(--mk-gold);
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--mk-gold);
+            padding-bottom: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* GRID DE CARTAS / COLEÇÃO */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .card-item {
+            background: linear-gradient(145deg, #181822, #0d0d12);
+            border: 2px solid #383848;
+            border-radius: 6px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .card-item:hover {
+            transform: translateY(-3px);
+            border-color: var(--mk-gold);
+        }
+
+        .card-item.gold { border-color: var(--mk-gold); }
+        .card-item.diamond { border-color: var(--purple-glow); box-shadow: 0 0 10px rgba(168, 85, 247, 0.3); }
+
+        .card-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 8px;
+            border: 2px solid #fff;
+        }
+
+        .fusion-badge {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            background: var(--mk-gold);
+            color: #000;
+            font-weight: bold;
+            font-size: 0.7rem;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        /* HUD DA ARENA DE COMBATE */
         .hud-arena {
-            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #0f0f14;
+            background: #09090d;
             padding: 10px 15px;
             border-radius: 6px;
             border: 1px solid #2e2e3d;
         }
 
-        .hud-fighter {
+        .fighter-hud {
             display: flex;
             flex-direction: column;
             width: 42%;
             gap: 4px;
-        }
-
-        .hud-name {
-            font-weight: bold;
-            font-size: 0.9rem;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
         .hp-bar-bg {
@@ -116,7 +211,6 @@
             border: 1px solid #444458;
             border-radius: 3px;
             overflow: hidden;
-            position: relative;
         }
 
         .hp-bar-fill {
@@ -147,21 +241,13 @@
             box-shadow: 0 0 8px #3b82f6;
         }
 
-        .vs-badge {
-            font-weight: bold;
-            color: var(--gold);
-            font-size: 1.2rem;
-            text-shadow: 0 0 10px var(--gold);
-        }
-
-        /* CONTAINER DO CANVAS */
         .canvas-container {
             position: relative;
             width: 100%;
-            height: 440px;
+            height: 380px;
             border-radius: 6px;
             overflow: hidden;
-            border: 2px solid var(--gold);
+            border: 2px solid var(--mk-gold);
             box-shadow: 0 0 20px rgba(0,0,0,0.9);
         }
 
@@ -171,55 +257,21 @@
             height: 100%;
         }
 
-        /* PAINEL DE CONTROLE DE ATAQUE estilo MK MOBILE */
         .controls-panel {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: #0f0f14;
+            background: #09090d;
             padding: 10px 15px;
             border-radius: 6px;
             border: 1px solid #2e2e3d;
             gap: 10px;
         }
 
-        .team-tags {
-            display: flex;
-            gap: 8px;
-        }
-
-        .tag-card {
-            width: 65px;
-            height: 60px;
-            background: #1a1a24;
-            border: 2px solid #3e3e50;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: bold;
-            color: #d4d4d8;
-            transition: all 0.2s;
-        }
-
-        .tag-card.active {
-            border-color: var(--gold);
-            box-shadow: 0 0 10px var(--gold);
-            background: #252533;
-        }
-
-        .action-btns {
-            display: flex;
-            gap: 8px;
-        }
-
         .action-btn {
             background: linear-gradient(135deg, #1a1a24, #0d0d12);
-            border: 2px solid var(--gold);
-            color: var(--gold);
+            border: 2px solid var(--mk-gold);
+            color: var(--mk-gold);
             padding: 10px 16px;
             font-weight: bold;
             font-size: 0.85rem;
@@ -231,9 +283,8 @@
         }
 
         .action-btn:hover:not(:disabled) {
-            background: var(--gold);
+            background: var(--mk-gold);
             color: #000;
-            box-shadow: 0 0 12px var(--gold);
         }
 
         .action-btn:disabled {
@@ -242,26 +293,6 @@
             color: #71717a;
             cursor: not-allowed;
         }
-
-        .special-sp {
-            border-color: #3b82f6;
-            color: #60a5fa;
-        }
-        .special-sp:hover:not(:disabled) {
-            background: #3b82f6;
-            color: #fff;
-            box-shadow: 0 0 12px #3b82f6;
-        }
-
-        .special-fb {
-            border-color: #ef4444;
-            color: #f87171;
-        }
-        .special-fb:hover:not(:disabled) {
-            background: #ef4444;
-            color: #fff;
-            box-shadow: 0 0 12px #ef4444;
-        }
     </style>
 </head>
 <body>
@@ -269,149 +300,204 @@
     <header>
         <h1>Multiverse Kombat 11</h1>
         <div class="currencies">
-            <div class="curr-item">🪙 350,000</div>
-            <div class="curr-item">💎 2,100</div>
+            <div class="curr-item">🪙 <span id="coins-display">250,000</span></div>
+            <div class="curr-item">💎 <span id="souls-display">1,500</span></div>
         </div>
     </header>
 
-    <div class="game-wrapper">
+    <!-- NAVEGAÇÃO DO APP (STYLE MK11 MOBILE) -->
+    <nav class="menu-bar">
+        <div class="nav-btn active" onclick="switchTab('home')">Home / Equipe</div>
+        <div class="nav-btn" onclick="switchTab('collection')">Minha Coleção</div>
+        <div class="nav-btn" onclick="switchTab('store')">Loja de Pacotes</div>
+        <div class="nav-btn" onclick="switchTab('fight')">Arena de Combate</div>
+    </nav>
+
+    <div class="app-container">
         
-        <!-- HUD DA ARENA -->
-        <div class="hud-arena">
-            <div class="hud-fighter">
-                <div class="hud-name" id="p1-name">Spawn (Image)</div>
-                <div class="hp-bar-bg"><div id="p1-hp-fill" class="hp-bar-fill p1-fill"></div></div>
-                <div class="power-meter" id="p1-power-meter">
-                    <div class="power-block"></div>
-                    <div class="power-block"></div>
-                    <div class="power-block"></div>
-                </div>
+        <!-- VISÃO GERAL: TAB HOME -->
+        <div id="tab-home" class="tab-content active">
+            <div class="section-title">
+                <span>Visão Geral do Aplicativo & Equipe Ativa</span>
             </div>
+            <p style="font-size: 0.85rem; color: #a1a1aa;">Selecione os membros do seu time 3v3 e entre na arena para enfrentar guerreiros de vários universos!</p>
+            
+            <div class="cards-grid" id="homeTeamGrid"></div>
 
-            <div class="vs-badge">VS</div>
+            <button class="action-btn" style="margin-top: 15px; padding: 14px; font-size: 1rem;" onclick="switchTab('fight')">
+                Entrar na Arena de Luta ⚔️
+            </button>
+        </div>
 
-            <div class="hud-fighter" style="align-items: flex-end;">
-                <div class="hud-name" id="p2-name" style="color: var(--red-glow);">Batman (DC)</div>
-                <div class="hp-bar-bg"><div id="p2-hp-fill" class="hp-bar-fill p2-fill"></div></div>
-                <div class="power-meter" id="p2-power-meter" style="width: 100%;">
-                    <div class="power-block"></div>
-                    <div class="power-block"></div>
-                    <div class="power-block"></div>
+        <!-- VISÃO GERAL: TAB COLEÇÃO -->
+        <div id="tab-collection" class="tab-content">
+            <div class="section-title">Coleção Completa do Multiverso</div>
+            <div class="cards-grid" id="fullCollectionGrid"></div>
+        </div>
+
+        <!-- VISÃO GERAL: TAB LOJA DE PACOTES -->
+        <div id="tab-store" class="tab-content">
+            <div class="section-title">Loja de Pacotes do Multiverso</div>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <div style="flex: 1; background: #12121a; border: 2px solid var(--mk-gold); padding: 15px; border-radius: 6px; text-align: center;">
+                    <h3 style="color: var(--mk-gold); margin-bottom: 8px;">Pacote Ouro do Multiverso</h3>
+                    <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 12px;">Garante 1 Carta de Lutador Ouro (MK, Marvel, DC, X-Men).</p>
+                    <button class="action-btn" onclick="buyPack('gold')">Comprar (🪙 50,000)</button>
+                </div>
+                <div style="flex: 1; background: #12121a; border: 2px solid var(--purple-glow); padding: 15px; border-radius: 6px; text-align: center;">
+                    <h3 style="color: var(--purple-glow); margin-bottom: 8px;">Pacote Diamante Supremo</h3>
+                    <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 12px;">Chance de obter Spawn, Divine Spawn e Entidades Cósmicas!</p>
+                    <button class="action-btn" style="border-color: var(--purple-glow); color: var(--purple-glow);" onclick="buyPack('diamond')">Comprar (💎 400)</button>
                 </div>
             </div>
         </div>
 
-        <!-- CANVAS DA ARENA DE COMBATE -->
-        <div class="canvas-container">
-            <canvas id="arenaCanvas" width="960" height="440"></canvas>
-        </div>
+        <!-- VISÃO GERAL: ARENA DE COMBATE 2.5D -->
+        <div id="tab-fight" class="tab-content">
+            
+            <div class="hud-arena">
+                <div class="fighter-hud">
+                    <div id="p1-name" style="font-weight: bold; color: var(--mk-gold);">Spawn</div>
+                    <div class="hp-bar-bg"><div id="p1-hp" class="hp-bar-fill p1-fill"></div></div>
+                    <div class="power-meter" id="p1-power-meter">
+                        <div class="power-block"></div>
+                        <div class="power-block"></div>
+                        <div class="power-block"></div>
+                    </div>
+                </div>
 
-        <!-- CONTROLES ESTILO MK MOBILE -->
-        <div class="controls-panel">
-            <div class="team-tags" id="teamTags">
-                <div class="tag-card active" onclick="switchFighter(0)">Spawn</div>
-                <div class="tag-card" onclick="switchFighter(1)">Wolverine</div>
-                <div class="tag-card" onclick="switchFighter(2)">Scorpion</div>
+                <div style="font-weight: bold; color: var(--mk-gold); font-size: 1.2rem;">VS</div>
+
+                <div class="fighter-hud" style="align-items: flex-end;">
+                    <div id="p2-name" style="font-weight: bold; color: var(--red-glow);">Batman</div>
+                    <div class="hp-bar-bg"><div id="p2-hp" class="hp-bar-fill p2-fill"></div></div>
+                    <div class="power-meter" id="p2-power-meter" style="width: 100%;">
+                        <div class="power-block"></div>
+                        <div class="power-block"></div>
+                        <div class="power-block"></div>
+                    </div>
+                </div>
             </div>
 
-            <div class="action-btns">
-                <button class="action-btn" onclick="triggerAttack()">Ataque Básico</button>
-                <button class="action-btn special-sp" id="btn-sp1" onclick="triggerSpecial(1)" disabled>Especial 1</button>
-                <button class="action-btn special-sp" id="btn-sp2" onclick="triggerSpecial(2)" disabled>Especial 2</button>
-                <button class="action-btn special-fb" id="btn-fb" onclick="triggerSpecial(3)" disabled>Fatal Blow</button>
+            <div class="canvas-container">
+                <canvas id="fightCanvas" width="960" height="380"></canvas>
             </div>
+
+            <div class="controls-panel">
+                <div style="display: flex; gap: 8px;" id="tagButtons"></div>
+
+                <div style="display: flex; gap: 8px;">
+                    <button class="action-btn" onclick="triggerAttack()">Ataque Básico</button>
+                    <button class="action-btn" id="btn-sp1" onclick="triggerSpecial(1)" disabled style="border-color: #3b82f6; color: #60a5fa;">Especial 1</button>
+                    <button class="action-btn" id="btn-sp2" onclick="triggerSpecial(2)" disabled style="border-color: #3b82f6; color: #60a5fa;">Especial 2</button>
+                    <button class="action-btn" id="btn-fb" onclick="triggerSpecial(3)" disabled style="border-color: #ef4444; color: #f87171;">Fatal Blow</button>
+                </div>
+            </div>
+
         </div>
 
     </div>
 
     <script>
-        const canvas = document.getElementById('arenaCanvas');
-        const ctx = canvas.getContext('2d');
+        let coins = 250000;
+        let souls = 1500;
 
-        // BANCO DE DADOS VISUAL DOS LUTADORES
-        const teamP1 = [
-            { name: "Spawn", id: 'spawn', hp: 1100, maxHp: 1100, suitColor: '#18181b', skinColor: '#27272a', capeColor: '#18181b', eyesColor: '#00ff66', power: 0, hasCape: true },
-            { name: "Wolverine", id: 'wolverine', hp: 1000, maxHp: 1000, suitColor: '#eab308', skinColor: '#fca5a5', capeColor: null, eyesColor: '#ffffff', power: 0, hasCape: false },
-            { name: "Scorpion", id: 'scorpion', hp: 950, maxHp: 950, suitColor: '#f59e0b', skinColor: '#27272a', capeColor: null, eyesColor: '#ffffff', power: 0, hasCape: false }
+        const roster = [
+            { id: 'spawn', name: 'Spawn', universe: 'Image Comics', tier: 'Diamante', color: '#00ff66', hp: 1200, maxHp: 1200, power: 0, fusion: 0 },
+            { id: 'scorpion', name: 'Scorpion', universe: 'Mortal Kombat', tier: 'Ouro', color: '#f59e0b', hp: 950, maxHp: 950, power: 0, fusion: 0 },
+            { id: 'subzero', name: 'Sub-Zero', universe: 'Mortal Kombat', tier: 'Ouro', color: '#38bdf8', hp: 900, maxHp: 900, power: 0, fusion: 0 },
+            { id: 'wolverine', name: 'Wolverine', universe: 'X-Men / Marvel', tier: 'Ouro', color: '#eab308', hp: 1050, maxHp: 1050, power: 0, fusion: 0 },
+            { id: 'batman', name: 'Batman', universe: 'DC Comics', tier: 'Ouro', color: '#64748b', hp: 1000, maxHp: 1000, power: 0, fusion: 0 }
         ];
 
-        let activeIndex = 0;
-        let player = teamP1[activeIndex];
+        let activeIdx = 0;
+        let player = roster[activeIdx];
+        let enemy = { ...roster[4], hp: 1000, maxHp: 1000 };
 
-        let enemy = {
-            name: "Batman", id: 'batman', hp: 1050, maxHp: 1050, suitColor: '#334155', skinColor: '#fca5a5', capeColor: '#0f172a', eyesColor: '#38bdf8', power: 0, hasCape: true
-        };
+        function switchTab(tabId) {
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
 
-        // Posições e Estados na Arena
-        let pPos = { x: 260, y: 320, state: 'IDLE', animTimer: 0 };
-        let ePos = { x: 700, y: 320, state: 'IDLE', animTimer: 0 };
-        let effectParticles = [];
+            event.target.classList.add('active');
+            document.getElementById(`tab-${tabId}`).classList.add('active');
 
-        function switchFighter(idx) {
-            if (teamP1[idx].hp <= 0) return;
-            activeIndex = idx;
-            player = teamP1[activeIndex];
-
-            document.querySelectorAll('.tag-card').forEach((card, i) => {
-                card.classList.toggle('active', i === idx);
-            });
-
-            document.getElementById('p1-name').innerText = player.name;
-            updateHUD();
+            if (tabId === 'home') renderHomeGrid();
+            if (tabId === 'collection') renderCollectionGrid();
         }
 
+        function renderHomeGrid() {
+            const grid = document.getElementById('homeTeamGrid');
+            grid.innerHTML = '';
+            roster.slice(0, 3).forEach((char, i) => {
+                const card = document.createElement('div');
+                card.className = `card-item ${char.tier === 'Diamante' ? 'diamond' : 'gold'}`;
+                card.innerHTML = `
+                    <div class="fusion-badge">F${char.fusion}</div>
+                    <div class="card-avatar" style="background: ${char.color}">${char.name[0]}</div>
+                    <div style="font-weight: bold; font-size: 0.85rem;">${char.name}</div>
+                    <div style="font-size: 0.65rem; color: var(--mk-gold);">${char.universe}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function renderCollectionGrid() {
+            const grid = document.getElementById('fullCollectionGrid');
+            grid.innerHTML = '';
+            roster.forEach(char => {
+                const card = document.createElement('div');
+                card.className = `card-item ${char.tier === 'Diamante' ? 'diamond' : 'gold'}`;
+                card.innerHTML = `
+                    <div class="fusion-badge">F${char.fusion}</div>
+                    <div class="card-avatar" style="background: ${char.color}">${char.name[0]}</div>
+                    <div style="font-weight: bold; font-size: 0.85rem;">${char.name}</div>
+                    <div style="font-size: 0.65rem; color: var(--mk-gold);">${char.universe}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function buyPack(type) {
+            if (type === 'gold' && coins >= 50000) {
+                coins -= 50000;
+            } else if (type === 'diamond' && souls >= 400) {
+                souls -= 400;
+            } else {
+                alert("Recursos insuficientes!"); return;
+            }
+            document.getElementById('coins-display').innerText = coins.toLocaleString();
+            document.getElementById('souls-display').innerText = souls.toLocaleString();
+            alert("Pacote aberto! Carta adicionada à sua coleção!");
+        }
+
+        // MOTOR CANVAS DA ARENA DE COMBATE
+        let p1X = 260, p2X = 700;
+        let particles = [];
+
         function triggerAttack() {
-            if (pPos.state !== 'IDLE') return;
-            pPos.state = 'ATTACK';
-            pPos.x += 80; // Avança para o soco
-
+            p1X += 60;
             setTimeout(() => {
-                let damage = 40 + Math.floor(Math.random() * 15);
-                enemy.hp = Math.max(0, enemy.hp - damage);
+                enemy.hp = Math.max(0, enemy.hp - 45);
                 player.power = Math.min(100, player.power + 25);
-
-                // Partículas de impacto
-                createHitFx(ePos.x - 20, ePos.y - 60, '#ef4444');
-
-                pPos.x -= 80;
-                pPos.state = 'IDLE';
-                updateHUD();
-            }, 180);
+                p1X -= 60;
+                updateArenaHUD();
+            }, 150);
         }
 
         function triggerSpecial(level) {
             let cost = level === 1 ? 33 : level === 2 ? 66 : 100;
-            if (player.power < cost || pPos.state !== 'IDLE') return;
-
+            if (player.power < cost) return;
             player.power -= cost;
-            pPos.state = 'SPECIAL';
-
-            let damage = level === 1 ? 180 : level === 2 ? 350 : 600;
-
-            createHitFx(ePos.x, ePos.y - 70, level === 3 ? '#ef4444' : '#00ff66', 40);
-
-            setTimeout(() => {
-                enemy.hp = Math.max(0, enemy.hp - damage);
-                pPos.state = 'IDLE';
-                updateHUD();
-            }, 400);
+            let dmg = level === 1 ? 160 : level === 2 ? 320 : 550;
+            enemy.hp = Math.max(0, enemy.hp - dmg);
+            updateArenaHUD();
         }
 
-        function createHitFx(x, y, color, count = 15) {
-            for (let i = 0; i < count; i++) {
-                effectParticles.push({
-                    x, y,
-                    vx: (Math.random() - 0.5) * 8,
-                    vy: (Math.random() - 0.5) * 8,
-                    life: 25,
-                    color
-                });
-            }
-        }
-
-        function updateHUD() {
-            document.getElementById('p1-hp-fill').style.width = `${(player.hp / player.maxHp) * 100}%`;
-            document.getElementById('p2-hp-fill').style.width = `${(enemy.hp / enemy.maxHp) * 100}%`;
+        function updateArenaHUD() {
+            document.getElementById('p1-name').innerText = player.name;
+            document.getElementById('p2-name').innerText = enemy.name;
+            document.getElementById('p1-hp').style.width = `${(player.hp / player.maxHp) * 100}%`;
+            document.getElementById('p2-hp').style.width = `${(enemy.hp / enemy.maxHp) * 100}%`;
 
             const blocks = document.querySelectorAll('#p1-power-meter .power-block');
             blocks[0].classList.toggle('active', player.power >= 33);
@@ -423,138 +509,42 @@
             document.getElementById('btn-fb').disabled = player.power < 100;
         }
 
-        // DESENHISTA VETORIAL DOS PERSONAGENS (CORPO HUMANOIDE COMPLETO)
-        function drawFighter(ctx, x, y, charData, facingRight = true) {
-            ctx.save();
-            ctx.translate(x, y);
-            if (!facingRight) ctx.scale(-1, 1);
-
-            let time = Date.now() * 0.005;
-            let breathe = Math.sin(time) * 2; // Animação de respiração da postura de luta
-
-            // Sombra
-            ctx.fillStyle = 'rgba(0,0,0,0.5)';
-            ctx.beginPath();
-            ctx.ellipse(0, 0, 30, 8, 0, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Capa (Spawn ou Batman)
-            if (charData.hasCape) {
-                ctx.fillStyle = charData.capeColor;
-                ctx.beginPath();
-                ctx.moveTo(-15, -90 + breathe);
-                ctx.quadraticCurveTo(-45 - Math.sin(time) * 5, -50, -35, 0);
-                ctx.lineTo(-5, 0);
-                ctx.quadraticCurveTo(-15, -40, -5, -90 + breathe);
-                ctx.fill();
-            }
-
-            // Pernas
-            ctx.strokeStyle = '#181820';
-            ctx.lineWidth = 10;
-            // Perna esquerda
-            ctx.beginPath();
-            ctx.moveTo(-10, -45); ctx.lineTo(-18, -20); ctx.lineTo(-22, 0);
-            ctx.stroke();
-            // Perna direita
-            ctx.beginPath();
-            ctx.moveTo(10, -45); ctx.lineTo(15, -20); ctx.lineTo(18, 0);
-            ctx.stroke();
-
-            // Tronco / Armadura
-            ctx.fillStyle = charData.suitColor;
-            ctx.beginPath();
-            ctx.roundRect(-16, -90 + breathe, 32, 48, 6);
-            ctx.fill();
-            ctx.lineWidth = 2;
-            ctx.strokeStyle = '#000';
-            ctx.stroke();
-
-            // Cabeça
-            ctx.fillStyle = charData.skinColor;
-            ctx.beginPath();
-            ctx.arc(0, -104 + breathe, 14, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-
-            // Olhos Brilhantes
-            ctx.fillStyle = charData.eyesColor;
-            ctx.fillRect(3, -107 + breathe, 5, 3);
-
-            // Braço Direiro (Postura de Luta)
-            ctx.strokeStyle = charData.suitColor;
-            ctx.lineWidth = 8;
-            ctx.beginPath();
-            ctx.moveTo(12, -80 + breathe);
-            ctx.lineTo(24, -65 + breathe);
-            ctx.lineTo(20, -80 + breathe); // Punho erguido
-            ctx.stroke();
-
-            ctx.restore();
-        }
-
-        // RENDERIZAÇÃO DO CENÁRIO GÓTICO DE MK11
-        function renderScene() {
+        function renderArena() {
+            const canvas = document.getElementById('fightCanvas');
+            const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Fundo Gradiente Sombrio
-            let bgGrad = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            bgGrad.addColorStop(0, '#050508');
-            bgGrad.addColorStop(0.7, '#14141f');
-            bgGrad.addColorStop(1, '#050508');
-            ctx.fillStyle = bgGrad;
+            // Cenário Fundo Gótico
+            ctx.fillStyle = '#0a0a10';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Colunas da Arena de Kombat
-            ctx.fillStyle = '#1c1c26';
-            for (let i = 80; i < canvas.width; i += 220) {
-                ctx.fillRect(i, 40, 35, 280);
-                // Detalhes da coluna
-                ctx.strokeStyle = '#2d2d3d';
-                ctx.strokeRect(i, 40, 35, 280);
-            }
-
-            // Tochas de Fogo Animadas nas Colunas
-            let fireTime = Date.now() * 0.01;
-            for (let i = 80; i < canvas.width; i += 220) {
-                let fireH = 15 + Math.sin(fireTime + i) * 5;
-                ctx.fillStyle = '#f97316';
-                ctx.beginPath();
-                ctx.arc(i + 17, 70, fireH / 2, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            // Piso de Pedra da Arena
             ctx.fillStyle = '#111118';
-            ctx.fillRect(0, 320, canvas.width, 120);
-            ctx.strokeStyle = varGold = '#d4af37';
-            ctx.lineWidth = 3;
+            ctx.fillRect(0, 280, canvas.width, 100);
+            ctx.strokeStyle = '#d4af37';
+            ctx.lineWidth = 2;
+            ctx.strokeRect(0, 280, canvas.width, 100);
+
+            // Jogador P1
+            ctx.fillStyle = player.color;
             ctx.beginPath();
-            ctx.moveTo(0, 320); ctx.lineTo(canvas.width, 320);
+            ctx.arc(p1X, 240, 28, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#fff';
             ctx.stroke();
 
-            // Desenhar Partículas de Golpe
-            for (let i = effectParticles.length - 1; i >= 0; i--) {
-                let p = effectParticles[i];
-                p.x += p.vx;
-                p.y += p.vy;
-                p.life--;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, 4, 0, Math.PI * 2);
-                ctx.fill();
-                if (p.life <= 0) effectParticles.splice(i, 1);
-            }
+            // Jogador P2
+            ctx.fillStyle = enemy.color;
+            ctx.beginPath();
+            ctx.arc(p2X, 240, 28, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#ef4444';
+            ctx.stroke();
 
-            // Desenhar os 2 Lutadores
-            drawFighter(ctx, pPos.x, pPos.y, player, true);
-            drawFighter(ctx, ePos.x, ePos.y, enemy, false);
-
-            requestAnimationFrame(renderScene);
+            requestAnimationFrame(renderArena);
         }
 
-        updateHUD();
-        requestAnimationFrame(renderScene);
+        renderHomeGrid();
+        updateArenaHUD();
+        requestAnimationFrame(renderArena);
     </script>
 </body>
 </html>
